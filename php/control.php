@@ -1,0 +1,51 @@
+<?php
+    require_once('encabezado.php');
+    require_once('funcion.php');
+    $header = '';
+    if(!empty($_POST['tna']) && !empty($_POST['plazo']) && !empty($_POST['monto']))
+    {
+        $tna = $_POST['tna'];
+        $plazo = $_POST['plazo'];
+        $monto = $_POST['monto'];
+        $montoFinal = 0;
+        $interesCompuesto = '';
+
+        echo $tna .'</br>';
+        echo $plazo .'</br>';
+        echo $monto .'</br>';
+        echo $montoFinal .'</br>';
+        echo $interesCompuesto .'</br>';
+        if(!empty($_POST['interesCompuesto'])) //compruebo si es que quiere interes compuesto solamente si el plazo  > 1
+        {
+            $interesCompuesto = $_POST['interesCompuesto'];
+        }
+        $montoFinal = calcularMonto($tna, $monto, $plazo, $interesCompuesto);
+        $interesGanado = number_format(($montoFinal - $monto),2,',','.');
+        $monto = number_format($monto,2,',','.');
+        $montoFinal = number_format($montoFinal,2,',','.');
+        echo '<section>
+                <section>
+                    <h1>SIMULADOR DE PLAZO FIJO EN PESOS</h1>
+                    <p>MONTO PUESTO EN PLAZO: $'. $monto .'</p>
+                    <p>INTERES GENERADO: $'. $interesGanado .'</p>
+                    <p>PLAZO: '. $plazo .' (mes/es)</p>
+                    <p>TOTAL GENERADO: $'. $montoFinal .'</p>
+                </section>
+            </section>';
+        }
+        else
+        {
+            $header = 'refresh:3;url=../index.php';
+            echo '<section>
+                    <h2>ERROR NO COMPLETO LOS CAMPOS CORRECTAMENTE. REDIRIGIENDO...</h2>
+                </section>';
+            header($header);
+        }
+    require_once('pie.php');
+?>
+
+<section>
+    <section>
+        <h2>ERROR NO COMPLETO LOS CAMPOS CORRECTAMENTE. REDIRIGIENDO...</h2>
+    </section>
+</section>
