@@ -1,4 +1,6 @@
 <?php
+    $rutaCSS = '';
+    $rutaJS = '';
     require_once('php/encabezado.php');
 
 ?>
@@ -22,10 +24,10 @@
                 </section>
                 <section>
                     <label for="no">NO</label>
-                    <input type="radio" id="no" name="interesCompuesto" value="no">
+                    <input type="radio" id="no" name="interesCompuesto" value="no" checked>
                 </section>
-                <section id="cotenedor-meses">
-                    <label for="meses">CANTIDAD DE MESES:</label>
+                <section id="contenedor-meses">
+                    <legend>CANTIDAD DE MESES:</label>
                     <select name="meses" id="">
                         <option value="">--------SELECCIONE--------</option>
                         <option value="1">1</option>
@@ -41,7 +43,6 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                     </select>
-
                 </section>
                 <section>
                     <label for="monto">MONTO: </label>

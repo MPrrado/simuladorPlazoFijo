@@ -2,6 +2,8 @@
     require_once('encabezado.php');
     require_once('funcion.php');
     $header = '';
+    $rutaJS = '../';
+    $rutaCSS = '../';
     if(!empty($_POST['tna']) && !empty($_POST['plazo']) && !empty($_POST['monto']))
     {
         $tna = $_POST['tna'];
