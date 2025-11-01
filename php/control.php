@@ -4,19 +4,25 @@
     $header = '';
     $rutaJS = '../';
     $rutaCSS = '../';
-    if(!empty($_POST['tna']) && !empty($_POST['plazo']) && !empty($_POST['monto']))
+    if(!empty($_POST['tna']) && !empty($_POST['plazo']) && !empty($_POST['monto']) && !empty($_POST['interesCompuesto']))
     {
         $tna = $_POST['tna'];
         $plazo = $_POST['plazo'];
         $monto = $_POST['monto'];
         $montoFinal = 0;
-        $interesCompuesto = '';
-
-        if(!empty($_POST['interesCompuesto']) && !empty($_POST['meses'])) //compruebo si es que quiere interes compuesto solamente si el plazo  > 1
+        $interesCompuesto = $_POST['interesCompuesto'];
+        $plazoMeses = 0;
+        if(empty($_POST['meses'])) //compruebo si es que quiere interes compuesto solamente si el plazo  > 1
         {
-            $interesCompuesto = $_POST['interesCompuesto'];
-            $plazoMeses = empty($_POST['meses']);
+            echo '<section>
+                    <p class = "text-danger">ERROR EL PLAZO PARA INTERES COMPUESTO DEBE SER MAYOR A 1 MES</p>
+                </section>';
+            // $plazoMeses = empty($_POST['meses']);
+        }else
+        {
+            $plazoMeses = $_POST['meses'];
         }
+
         $montoFinal = calcularMonto($tna, $monto, $plazo, $interesCompuesto, $plazoMeses);
         $interesGanado = number_format(($montoFinal - $monto),2,',','.');
         $monto = number_format($monto,2,',','.');
@@ -41,9 +47,9 @@
         }
     require_once('pie.php');
 ?>
-
+<!-- 
 <section>
     <section>
         <h2>ERROR NO COMPLETO LOS CAMPOS CORRECTAMENTE. REDIRIGIENDO...</h2>
     </section>
-</section>
+</section> -->
